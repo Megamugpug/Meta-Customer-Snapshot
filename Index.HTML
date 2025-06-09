@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Customer Snapshot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617; /* Even darker, more premium background */
+            background-image: linear-gradient(125deg, #020617, #1e293b, #020617);
+            background-size: 200% 200%;
+            animation: gradient-animation 15s ease infinite;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #c084fc, #f472b6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px); /* For Safari */
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        .chart-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(51, 65, 85, 0.3);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .chart-card:hover {
+            transform: translateY(-6px);
+            background: rgba(30, 41, 59, 0.7);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8 text-gray-200">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <h1 class="text-4xl sm:text-6xl font-black gradient-text tracking-tight">Meta Customer Snapshot</h1>
+            <p class="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">An immersive deep-dive into shopper profiles at Target and Best Buy, based on survey data from the last 3 weeks.</p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+            <!-- Target Ray-Ban Meta Section -->
+            <section class="section-card p-6 rounded-3xl shadow-2xl" style="animation-delay: 0s;">
+                <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                    <svg class="h-8 w-8 text-red-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4" fill="currentColor" class="text-slate-800"/></svg>
+                    Target: Ray-Ban Meta
+                </h2>
+                <p class="mb-8 text-slate-400 italic border-l-4 border-red-500/50 pl-4">
+                    The Target RBM shopper leans slightly <strong class="text-pink-400">Female (55%)</strong>, with a strong concentration in the <strong class="text-red-400">25-34</strong> age bracket. Discovery is driven heavily by <strong class="text-orange-400">In-store displays (56%)</strong>.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Gender</h3><div class="relative h-48 w-full"><canvas id="targetRbmGenderChart"></canvas></div></div>
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Age</h3><div class="relative h-48 w-full"><canvas id="targetRbmAgeChart"></canvas></div></div>
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Marketing</h3><div class="relative h-48 w-full"><canvas id="targetRbmMarketingChart"></canvas></div></div>
+                </div>
+            </section>
+
+            <!-- Best Buy Ray-Ban Meta Section -->
+            <section class="section-card p-6 rounded-3xl shadow-2xl" style="animation-delay: 0.1s;">
+                <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                     <svg class="h-8 w-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4" fill="currentColor" class="text-slate-800"/></svg>
+                    Best Buy: Ray-Ban Meta
+                </h2>
+                <p class="mb-8 text-slate-400 italic border-l-4 border-blue-500/50 pl-4">
+                   The Best Buy RBM shopper is clearly <strong class="text-blue-400">Male (64%)</strong>. The audience is older, with the <strong class="text-blue-400">35-44</strong> age group leading. <strong class="text-green-400">Social Media (52%)</strong> is the dominant discovery channel.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Gender</h3><div class="relative h-48 w-full"><canvas id="bestBuyRbmGenderChart"></canvas></div></div>
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Age</h3><div class="relative h-48 w-full"><canvas id="bestBuyRbmAgeChart"></canvas></div></div>
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Marketing</h3><div class="relative h-48 w-full"><canvas id="bestBuyRbmMarketingChart"></canvas></div></div>
+                </div>
+            </section>
+            
+            <!-- Target Quest Section -->
+            <section class="section-card p-6 rounded-3xl shadow-2xl" style="animation-delay: 0.2s;">
+                <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                     <svg class="h-8 w-8 text-red-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4" fill="currentColor" class="text-slate-800"/></svg>
+                    Target: Meta Quest
+                </h2>
+                <p class="mb-8 text-slate-400 italic border-l-4 border-red-500/50 pl-4">
+                   The Quest shopper here is predominantly <strong class="text-blue-400">Male (65%)</strong>, also concentrated in the <strong class="text-red-400">25-34</strong> age group. Awareness shifts heavily to <strong class="text-green-400">Social Media (46%)</strong>.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Gender</h3><div class="relative h-48 w-full"><canvas id="targetQuestGenderChart"></canvas></div></div>
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Age</h3><div class="relative h-48 w-full"><canvas id="targetQuestAgeChart"></canvas></div></div>
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Marketing</h3><div class="relative h-48 w-full"><canvas id="targetQuestMarketingChart"></canvas></div></div>
+                </div>
+            </section>
+
+            <!-- Best Buy Meta Quest Section -->
+            <section class="section-card p-6 rounded-3xl shadow-2xl" style="animation-delay: 0.3s;">
+                <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                    <svg class="h-8 w-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4" fill="currentColor" class="text-slate-800"/></svg>
+                    Best Buy: Meta Quest
+                </h2>
+                <p class="mb-8 text-slate-400 italic border-l-4 border-blue-500/50 pl-4">
+                   This profile is overwhelmingly <strong class="text-blue-400">Male (77%)</strong> and trends older, with the <strong class="text-blue-400">45-54</strong> age group as the largest segment. <strong class="text-green-400">Social Media (49%)</strong> remains the top channel.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Gender</h3><div class="relative h-48 w-full"><canvas id="bestBuyQuestGenderChart"></canvas></div></div>
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Age</h3><div class="relative h-48 w-full"><canvas id="bestBuyQuestAgeChart"></canvas></div></div>
+                    <div class="chart-card p-4 rounded-xl text-center"><h3 class="font-semibold text-slate-300 mb-2">Marketing</h3><div class="relative h-48 w-full"><canvas id="bestBuyQuestMarketingChart"></canvas></div></div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-20 text-slate-500 text-sm">
+            <p>Data based on all in-store customer surveys. Charts are for illustrative purposes.</p>
+        </footer>
+    </div>
+
+<script>
+    // --- Chart.js Configuration ---
+    Chart.defaults.font.family = 'Inter';
+    Chart.defaults.plugins.legend.position = 'bottom';
+    Chart.defaults.plugins.tooltip.boxPadding = 5;
+    Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(15, 23, 42, 0.9)';
+    Chart.defaults.plugins.tooltip.titleFont = { weight: 'bold', size: 14 };
+    Chart.defaults.plugins.tooltip.bodyFont = { size: 12 };
+    Chart.defaults.color = '#94a3b8';
+
+    // --- Global Color Palette for Consistency ---
+    const colorPalette = {
+        'Male': 'rgba(96, 165, 250, 0.9)',   // Lighter Meta Blue
+        'Female': 'rgba(244, 114, 182, 0.9)', // Pink
+        'In-store': 'rgba(251, 146, 60, 0.9)', // Orange
+        'In-store Display': 'rgba(251, 146, 60, 0.9)',
+        'Social Media': 'rgba(74, 222, 128, 0.9)', // Green
+        'Friend/Family': 'rgba(192, 132, 252, 0.9)', // Purple
+        'Other': 'rgba(148, 163, 184, 0.7)'
+    };
+    
+    // --- Helper function to create charts ---
+    function createChart(canvasId, type, labels, data, colors, isBar = false) {
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10
+                }
+            },
+            plugins: { 
+                legend: { 
+                    display: !isBar,
+                    labels: { color: '#94a3b8', boxWidth: 12, padding: 20 }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            const value = typeof context.parsed === 'object' && context.parsed !== null ? context.parsed.y : context.parsed;
+                            if (value !== null) {
+                                label += value.toFixed(1) + '%';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: isBar ? {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: 'rgba(51, 65, 85, 0.5)' },
+                    ticks: { color: '#94a3b8', callback: (value) => value + '%' }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { 
+                        color: '#94a3b8',
+                        autoSkip: false, // Ensure all labels are shown
+                        maxRotation: 45, // Rotate labels to fit
+                        minRotation: 30
+                    }
+                }
+            } : {},
+            onHover: (event, chartElement) => {
+                event.native.target.style.cursor = chartElement[0] ? 'pointer' : 'default';
+            }
+        };
+
+        new Chart(document.getElementById(canvasId), {
+            type: type,
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: colors,
+                    borderColor: '#0f172a',
+                    borderWidth: type === 'bar' ? 0 : 4,
+                    borderRadius: type === 'bar' ? 6 : 0,
+                    hoverOffset: 8,
+                    hoverBorderWidth: 0,
+                }]
+            },
+            options: chartOptions
+        });
+    }
+
+    // --- UPDATED Data Objects (ALL TIME from new file) ---
+    const targetRbmData = {
+        gender: { labels: ['Female', 'Male'], values: [54.5, 45.5] },
+        age: { labels: ['18-24', '25-34', '35-44'], values: [18.2, 45.5, 27.3] },
+        marketing: { labels: ['In-store Display', 'Social Media', 'Friend/Family'], values: [56.3, 31.3, 12.5] }
+    };
+    const targetQuestData = {
+        gender: { labels: ['Male', 'Female'], values: [65.2, 34.8] },
+        age: { labels: ['18-24', '25-34', '35-44'], values: [20.8, 45.8, 25] },
+        marketing: { labels: ['Social Media', 'Friend/Family', 'In-store Display'], values: [45.8, 37.5, 12.5] }
+    };
+    const bestBuyRbmData = {
+        gender: { labels: ['Male', 'Female'], values: [63.6, 36.4] },
+        age: { labels: ['25-34', '35-44', '45-54'], values: [23.3, 41.9, 25.6] },
+        marketing: { labels: ['Social Media', 'Friend/Family', 'In-store Display'], values: [52.4, 25.4, 15.9] }
+    };
+    const bestBuyQuestData = {
+        gender: { labels: ['Male', 'Female'], values: [77.1, 22.9] },
+        age: { labels: ['25-34', '35-44', '45-54'], values: [16.2, 33.1, 41.2] },
+        marketing: { labels: ['Social Media', 'Friend/Family', 'In-store Display'], values: [49.1, 26.4, 17.0] }
+    };
+
+    // --- Helper function to map labels to consistent colors ---
+    const mapColors = (labels) => labels.map(label => colorPalette[label] || colorPalette['Other']);
+    
+    // --- Chart Initialization ---
+    // Target
+    createChart('targetRbmGenderChart', 'doughnut', targetRbmData.gender.labels, targetRbmData.gender.values, mapColors(targetRbmData.gender.labels));
+    createChart('targetRbmAgeChart', 'bar', targetRbmData.age.labels, targetRbmData.age.values, '#dc2626', true);
+    createChart('targetRbmMarketingChart', 'pie', targetRbmData.marketing.labels, targetRbmData.marketing.values, mapColors(targetRbmData.marketing.labels));
+    
+    createChart('targetQuestGenderChart', 'doughnut', targetQuestData.gender.labels, targetQuestData.gender.values, mapColors(targetQuestData.gender.labels));
+    createChart('targetQuestAgeChart', 'bar', targetQuestData.age.labels, targetQuestData.age.values, '#dc2626', true);
+    createChart('targetQuestMarketingChart', 'pie', targetQuestData.marketing.labels, targetQuestData.marketing.values, mapColors(targetQuestData.marketing.labels));
+
+    // Best Buy
+    createChart('bestBuyRbmGenderChart', 'doughnut', bestBuyRbmData.gender.labels, bestBuyRbmData.gender.values, mapColors(bestBuyRbmData.gender.labels));
+    createChart('bestBuyRbmAgeChart', 'bar', bestBuyRbmData.age.labels, bestBuyRbmData.age.values, '#2563eb', true);
+    createChart('bestBuyRbmMarketingChart', 'pie', bestBuyRbmData.marketing.labels, bestBuyRbmData.marketing.values, mapColors(bestBuyRbmData.marketing.labels));
+
+    createChart('bestBuyQuestGenderChart', 'doughnut', bestBuyQuestData.gender.labels, bestBuyQuestData.gender.values, mapColors(bestBuyQuestData.gender.labels));
+    createChart('bestBuyQuestAgeChart', 'bar', bestBuyQuestData.age.labels, bestBuyQuestData.age.values, '#2563eb', true);
+    createChart('bestBuyQuestMarketingChart', 'pie', bestBuyQuestData.marketing.labels, bestBuyQuestData.marketing.values, mapColors(bestBuyQuestData.marketing.labels));
+
+</script>
+
+</body>
+</html>
